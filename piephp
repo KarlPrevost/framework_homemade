@@ -1,0 +1,56 @@
+class Router{
+    static $_routes;
+
+    public function static connect($route,$action){
+
+    }
+
+    public function static get($route){
+        return ($_routes[$route]);
+    }
+
+
+}
+
+//pour appeller une method satic:
+
+Router::connect
+Router::get
+
+
+//dans routes.php
+
+Router::connect ("/",["controller"=>"AppController","action"=>"index"]);
+
+
+// utiliser la table de routage dans Core.
+
+
+//3
+
+$action = Router::get('/');
+$action->["controller"=>"AppController","action"=>"index"]
+
+
+// objectif : reconstruire la ligne suivante
+// $controller = new Controller\AppController;  
+// $controller->index();
+
+$classname = "Controller\\" . $action['controller']
+$controller = new $classname;
+$controller->{$action["action"]}()  ;
+
+class AppController{
+    public function index(){
+        echo 'index';
+    }
+}
+
+
+
+
+
+
+
+
+
